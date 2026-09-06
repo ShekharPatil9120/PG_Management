@@ -31,10 +31,6 @@ button,input,select{font:inherit}.app{display:flex;min-height:100vh}
     <a data-page="food"><i class="fa-solid fa-utensils"></i>Food &amp; Menu</a>
     <a data-page="complaints"><i class="fa-solid fa-screwdriver-wrench"></i>Complaints &amp;<br>Maintenance</a>
     <a data-page="visitors"><i class="fa-solid fa-user-group"></i>Visitors</a>
-    <a data-page="finance"><i class="fa-solid fa-chart-column"></i>Finance</a>
-    <a data-page="inventory"><i class="fa-solid fa-box"></i>Inventory</a>
-    <a data-page="staff"><i class="fa-solid fa-user"></i>Staff</a>
-    <a data-page="documents"><i class="fa-solid fa-file"></i>Documents</a>
     <a data-page="notifications"><i class="fa-solid fa-bell"></i>Notifications <b class="badge" style="position:static;margin-left:auto">3</b></a>
     <a data-page="reports"><i class="fa-solid fa-chart-line"></i>Reports &amp; Analytics</a>
     <a data-page="settings"><i class="fa-solid fa-gear"></i>Settings</a>
@@ -100,7 +96,39 @@ ${stat('fa-indian-rupee-sign','teal','Rent Collected','₹1,24,000','(This Month
 <div class="panel"><h3>Recent Payments</h3><div class="panel-body"><table class="mini-table">
 <tr><td>Rahul Sharma</td><td>101 / Bed 1</td><td>₹8,000</td><td>18 May</td></tr><tr><td>Priya Singh</td><td>103 / Bed 1</td><td>₹8,000</td><td>17 May</td></tr><tr><td>Karan Singh</td><td>104 / Bed 1</td><td>₹8,000</td><td>16 May</td></tr><tr><td>Sourav Das</td><td>105 / Bed 2</td><td>₹8,000</td><td>15 May</td></tr><tr><td>Amit Verma</td><td>101 / Bed 3</td><td>₹8,000</td><td>14 May</td></tr>
 </table><div class="center-link">View all payments</div></div></div>
-</div><div class="footer">© 2025 PG Management System. All rights reserved.</div>`;
+</div>
+  <div class="section-grid">
+    <div class="panel">
+      <h3>Visitors Today <small>(12 total)</small></h3>
+      <div class="panel-body status-list">
+        <div class="status-row"><span class="circle" style="background:#075eea"><i class="fa-solid fa-users"></i></span> Total Visitors <b>12</b></div>
+        <div class="status-row"><span class="circle" style="background:#12a84a"><i class="fa-solid fa-user-check"></i></span> Currently Inside <b>4</b></div>
+        <div class="status-row"><span class="circle" style="background:#6735dc"><i class="fa-solid fa-right-from-bracket"></i></span> Checked Out <b>8</b></div>
+      </div>
+      <div class="center-link" style="padding-bottom:12px;cursor:pointer" onclick="load('visitors')">View all visitors →</div>
+    </div>
+    <div class="panel">
+      <h3>Recent Visitors</h3>
+      <div class="panel-body">
+        <table class="mini-table">
+          <tr><td><b>Rohit Kumar</b><br><small>Rahul Sharma • 102 / Bed 2</small></td><td>10:20 AM</td></tr>
+          <tr><td><b>Priya Sharma</b><br><small>Amit Verma • 101 / Bed 1</small></td><td>09:15 AM</td></tr>
+          <tr><td><b>Anjali Patil</b><br><small>Siddharth Jain • 103 / Bed 1</small></td><td>11:05 AM</td></tr>
+          <tr><td><b>Swiggy Delivery</b><br><small>Vikash Yadav • 104 / Bed 3</small></td><td>12:10 PM</td></tr>
+        </table>
+        <div class="center-link" style="cursor:pointer" onclick="load('visitors')">View visitor history</div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Visitor Activity</h3>
+      <div class="panel-body">
+        <div class="action-row"><span class="circle" style="background:#12a84a"><i class="fa-solid fa-right-to-bracket"></i></span><b>4</b>&nbsp; Visitors Inside</div>
+        <div class="action-row"><span class="circle" style="background:#075eea"><i class="fa-solid fa-door-open"></i></span><b>8</b>&nbsp; Visitors Checked Out</div>
+        <div class="action-row"><span class="circle" style="background:#f49b10"><i class="fa-solid fa-calendar"></i></span><b>3</b>&nbsp; Expected Today</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">© 2025 PG Management System. All rights reserved.</div>`;
 }
 function residentsPage(){
 setTitle('Residents'); return `<div class="page-head"><h2>Residents</h2><div class="right"><div class="top-actions"><div class="date"><i class="fa-regular fa-calendar"></i>18 May 2025, Sunday</div><div class="branch">Sunrise PG <i class="fa-solid fa-chevron-down" style="font-size:9px"></i></div></div></div></div>
@@ -126,13 +154,192 @@ function foodPage(){setTitle('Food & Menu');let days=['Mon','Tue','Wed','Thu','F
 }
 function complaintsPage(){setTitle('Complaints');let rows=[['Water Leakage in Bathroom','Water is leaking from the tap...','Amit Verma','101 / Bed 1','Plumbing','High','Open','09:15 AM',12],['Light Not Working','The light in the room is not working since yesterday.','Rahul Sharma','102 / Bed 2','Electrical','Medium','In Progress','10:30 AM',11],['Fan Making Noise','Ceiling fan is making a lot of noise while running.','Priya Singh','103 / Bed 1','Electrical','Low','Open','04:45 PM',13],['WiFi Connection Issue','Internet connection is very slow in evenings.','Vikash Yadav','104 / Bed 3','Internet','Medium','In Progress','03:20 PM',14]];return `<div class="grid cards4">${stat('fa-clipboard-list','blue','Total Complaints','32','View Details')}${stat('fa-circle-exclamation','red','Open','12','37.50% of Total')}${stat('fa-wrench','orange','In Progress','6','18.75% of Total')}${stat('fa-circle-check','green','Resolved','13','40.63% of Total')}</div><div class="toolbar" style="margin-top:14px"><div class="search"><i class="fa-solid fa-magnifying-glass"></i><input placeholder="Search complaint, resident or room..."></div><select class="select"><option>All Status</option></select><select class="select"><option>All Categories</option></select><select class="select"><option>All Rooms</option></select><button class="action-btn">⚱ Filter</button><button class="primary">＋ Raise Complaint</button></div><div class="table-card"><table class="data-table"><thead><tr><th>#</th><th>Complaint</th><th>Resident</th><th>Room / Bed</th><th>Category</th><th>Priority</th><th>Status</th><th>Raised On</th><th>Actions</th></tr></thead><tbody>${rows.map((r,i)=>`<tr><td>${i+1}</td><td><b>${r[0]}</b><br><small style="color:#53617d">${r[1]}</small></td><td><div class="person"><img src="${img(r[8])}" style="width:40px;height:40px"><div>${r[2]}<br><small>98765 43210</small></div></div></td><td>${r[3]}</td><td><span class="status progress">${r[4]}</span></td><td><span class="status ${r[5]==='High'?'open':r[5]==='Medium'?'partial':'active'}">${r[5]}</span></td><td><span class="status ${r[6]==='Open'?'open':'progress'}">${r[6]}</span></td><td>18 May 2025<br>${r[7]}</td><td><button class="action-btn">◉</button> <button class="action-btn">✎</button> <button class="action-btn">⋮</button></td></tr>`).join('')}</tbody></table><div class="pagination"><span>Showing 1 to 4 of 4 complaints</span><span>Rows per page: 10⌄</span></div></div>`;
 }
+
+function visitorsPage(){
+  setTitle('Visitors');
+  const visitors=[
+    ['Priya Sharma','Amit Verma','101 / Bed 1','98765 11223','Family Visit','09:15 AM','11:30 AM','Checked Out',12],
+    ['Rohit Kumar','Rahul Sharma','102 / Bed 2','91234 55678','Friend Visit','10:20 AM','—','Inside',11],
+    ['Anjali Patil','Siddharth Jain','103 / Bed 1','99887 22110','Family Visit','11:05 AM','12:40 PM','Checked Out',13],
+    ['Swiggy Delivery','Vikash Yadav','104 / Bed 3','88776 44332','Delivery','12:10 PM','12:25 PM','Checked Out',14],
+    ['Mahesh Rao','Priya Singh','105 / Bed 2','90123 77889','Maintenance','01:30 PM','—','Inside',15],
+    ['Sneha Kulkarni','Neha Patel','106 / Bed 1','93456 22334','Friend Visit','02:15 PM','—','Expected',16]
+  ];
+
+  const statusClass=s=>s==='Inside'?'active':s==='Expected'?'partial':'paid';
+
+  return `
+  <div class="page-head">
+    <div>
+      <h2>Visitors</h2>
+      <div style="color:#53617d;margin-top:6px">Track visitor entries, check-ins and check-outs for your PG.</div>
+    </div>
+    <button class="primary" onclick="alert('Add Visitor form can be connected here.')">
+      <i class="fa-solid fa-plus"></i> Add Visitor
+    </button>
+  </div>
+
+  <div class="grid cards4">
+    ${stat('fa-users','blue','Visitors Today','12','View all visitors')}
+    ${stat('fa-user-check','green','Currently Inside','4','Visitors inside')}
+    ${stat('fa-clock','orange','Expected Visitors','3','Coming today')}
+    ${stat('fa-user-xmark','purple','Checked Out','8','Today')}
+  </div>
+
+  <div class="section-grid" style="margin-top:10px">
+    <div class="panel">
+      <h3>Visitor Summary <small>(Today)</small></h3>
+      <div class="panel-body status-list">
+        <div class="status-row">
+          <span class="circle" style="background:#075eea"><i class="fa-solid fa-user-group"></i></span>
+          Total Visitors <b>12</b>
+        </div>
+        <div class="status-row">
+          <span class="circle" style="background:#12a84a"><i class="fa-solid fa-right-to-bracket"></i></span>
+          Checked In <b>4</b>
+        </div>
+        <div class="status-row">
+          <span class="circle" style="background:#f49b10"><i class="fa-solid fa-hourglass-half"></i></span>
+          Expected <b>3</b>
+        </div>
+        <div class="status-row">
+          <span class="circle" style="background:#6735dc"><i class="fa-solid fa-right-from-bracket"></i></span>
+          Checked Out <b>8</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Currently Inside</h3>
+      <div class="panel-body">
+        <div class="action-row">
+          <span class="circle" style="background:#12a84a"><i class="fa-solid fa-user"></i></span>
+          <div><b>Rohit Kumar</b><br><small style="color:#65718c">Rahul Sharma • Room 102</small></div>
+          <span style="margin-left:auto;font-size:11px;color:#53617d">10:20 AM</span>
+        </div>
+        <div class="action-row">
+          <span class="circle" style="background:#12a84a"><i class="fa-solid fa-user"></i></span>
+          <div><b>Mahesh Rao</b><br><small style="color:#65718c">Priya Singh • Room 105</small></div>
+          <span style="margin-left:auto;font-size:11px;color:#53617d">01:30 PM</span>
+        </div>
+        <div class="action-row">
+          <span class="circle" style="background:#12a84a"><i class="fa-solid fa-user"></i></span>
+          <div><b>Arun Das</b><br><small style="color:#65718c">Karan Singh • Room 107</small></div>
+          <span style="margin-left:auto;font-size:11px;color:#53617d">02:05 PM</span>
+        </div>
+        <div class="center-link">View visitors currently inside</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Expected Today</h3>
+      <div class="panel-body">
+        <div class="action-row">
+          <span class="circle" style="background:#f49b10"><i class="fa-solid fa-calendar"></i></span>
+          <div><b>Manoj Patil</b><br><small style="color:#65718c">Amit Verma • Room 101</small></div>
+          <span style="margin-left:auto;font-size:11px">04:30 PM</span>
+        </div>
+        <div class="action-row">
+          <span class="circle" style="background:#f49b10"><i class="fa-solid fa-calendar"></i></span>
+          <div><b>Neha Rao</b><br><small style="color:#65718c">Rahul Sharma • Room 102</small></div>
+          <span style="margin-left:auto;font-size:11px">05:15 PM</span>
+        </div>
+        <div class="action-row">
+          <span class="circle" style="background:#f49b10"><i class="fa-solid fa-calendar"></i></span>
+          <div><b>Vivek Joshi</b><br><small style="color:#65718c">Siddharth Jain • Room 103</small></div>
+          <span style="margin-left:auto;font-size:11px">06:00 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolbar" style="margin-top:14px">
+    <div class="search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input placeholder="Search visitor, resident, phone or room..." id="visitorSearch">
+    </div>
+    <select class="select">
+      <option>Today</option>
+      <option>Yesterday</option>
+      <option>This Week</option>
+    </select>
+    <select class="select">
+      <option>All Status</option>
+      <option>Inside</option>
+      <option>Expected</option>
+      <option>Checked Out</option>
+    </select>
+    <select class="select">
+      <option>All Purpose</option>
+      <option>Family Visit</option>
+      <option>Friend Visit</option>
+      <option>Delivery</option>
+      <option>Maintenance</option>
+    </select>
+  </div>
+
+  <div class="table-card">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Visitor</th>
+          <th>Resident</th>
+          <th>Room / Bed</th>
+          <th>Phone</th>
+          <th>Purpose</th>
+          <th>Check-in</th>
+          <th>Check-out</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${visitors.map((r,i)=>`
+          <tr>
+            <td>${i+1}</td>
+            <td>
+              <div class="person">
+                <img src="${img(r[8])}" style="width:42px;height:42px">
+                <div><b>${r[0]}</b><br><small style="color:#65718c">Visitor</small></div>
+              </div>
+            </td>
+            <td>${r[1]}</td>
+            <td>${r[2]}</td>
+            <td>${r[3]}</td>
+            <td><span class="status progress">${r[4]}</span></td>
+            <td>${r[5]}</td>
+            <td>${r[6]}</td>
+            <td><span class="status ${statusClass(r[7])}"><i class="fa-solid fa-circle" style="font-size:7px"></i>${r[7]}</span></td>
+            <td>
+              ${r[7]==='Inside'
+                ? `<button class="action-btn" title="Check out" onclick="alert('Visitor checked out')"><i class="fa-solid fa-right-from-bracket"></i></button>`
+                : `<button class="action-btn" title="View"><i class="fa-solid fa-eye"></i></button>`
+              }
+            </td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+    <div class="pagination">
+      <span>Showing 1 to 6 of 12 visitors</span>
+      <div class="pages"><button>‹</button><button class="on">1</button><button>2</button><button>›</button></div>
+    </div>
+  </div>
+
+  <div class="notice">
+    <i class="fa-solid fa-circle-info"></i>
+    Visitor records help PG owners maintain a clear entry and exit history for residents and guests.
+  </div>`;
+}
+
 function notificationsPage(){setTitle('Notifications');let n=[['Rent Reminder','Rent for Room 101 / Bed 1 is due on 20 May 2025.','09:30 AM','₹','blue'],['Payment Received','₹8,000 received from Rahul Sharma for May 2025.','09:15 AM','✓','green'],['Maintenance Update','Complaint “Light Not Working” is now In Progress.','08:45 AM','⚒','orange'],['Menu Update','Today’s dinner menu has been updated. Check Food & Menu section.','08:20 AM','♟','purple'],['Visitor Entry','A new visitor entry has been added for Priya Singh.','08:20 AM','♙','red']];return `<div class="toolbar"><div class="search"><i class="fa-solid fa-magnifying-glass"></i><input placeholder="Search notifications..."></div><div class="tabs" style="border:0;height:41px;align-items:center"><span class="selected" style="padding:11px 14px;background:#0757e8;color:#fff;border-radius:6px">All &nbsp;15</span><span>Unread <b style="color:red">5</b></span><span>Rent <b style="color:red">4</b></span><span>Complaints <b style="color:red">2</b></span><span>Food <b style="color:red">1</b></span></div><button class="primary">✓ Mark all as read</button></div><div class="panel"><h3>Today – 18 May 2025</h3>${n.map(x=>`<div style="display:flex;align-items:center;padding:12px 17px;border-top:1px solid var(--line)"><div class="circle" style="background:${x[4]==='blue'?'#075eea':x[4]==='green'?'#12a84a':x[4]==='orange'?'#f49b10':x[4]==='purple'?'#6c35dc':'#e82d61'}">${x[3]}</div><div><b>${x[0]}</b><div style="font-size:11px;color:#53617d;margin-top:5px">${x[1]}</div></div><span style="margin-left:auto;font-size:11px">${x[2]} &nbsp; <b style="color:#0757e8">•</b></span></div>`).join('')}<h3 style="border-top:1px solid var(--line)">Yesterday – 17 May 2025</h3><div class="compact-list"><div class="compact-line" style="grid-template-columns:2fr 1fr">Complaint Resolved — Your complaint “Fan Making Noise” has been resolved.<span>06:30 PM</span></div><div class="compact-line" style="grid-template-columns:2fr 1fr">Rent Overdue Alert — Rent for Room 104 / Bed 3 is overdue by 3 days.<span>03:40 PM</span></div><div class="compact-line" style="grid-template-columns:2fr 1fr">New Resident Added — Amit Verma has been added as a new resident.<span>11:25 AM</span></div></div><div class="pagination"><span>Showing 1 to 10 of 15 notifications</span><span>‹ &nbsp; <b>1</b> &nbsp; 2 &nbsp; ›</span></div></div>`;
 }
 function reportsPage(){setTitle('Reports');return `<div class="toolbar"><select class="select"><option>▣ This Month</option></select><select class="select"><option>Report Type</option></select><select class="select"><option>All Rooms</option></select><button class="action-btn" style="margin-left:auto">⚱ More Filters</button><button class="primary">↓ Generate Report</button></div><div class="grid cards4">${stat('fa-wallet','blue','Rent Collected','₹ 2,48,000','↑ 18% vs Last Month')}${stat('fa-wallet','red','Expenses','₹ 98,650','↑ 8% vs Last Month')}${stat('fa-indian-rupee-sign','orange','Pending Rent','₹ 45,000','↑ 12% vs Last Month')}${stat('fa-chart-line','green','Net Income','₹ 1,49,350','↑ 26% vs Last Month')}</div><div class="report-grid" style="margin-top:10px"><div class="panel report-box"><h3>Monthly Rent Collection</h3><div class="bar-chart">${[['₹1,85,000','Dec 2024',65],['₹2,10,000','Jan 2025',74],['₹2,20,000','Feb 2025',78],['₹2,35,000','Mar 2025',84],['₹2,10,000','Apr 2025',75],['₹2,48,000','May 2025',89]].map(x=>`<div class="bar" style="height:${x[2]}%"><label>${x[0]}</label><small>${x[1]}</small></div>`).join('')}</div></div><div class="panel report-box"><h3>Expense Overview <small>(This Month)</small></h3><div class="expense"><div class="donut2"><b>Total<br>₹ 98,650</b></div><div class="expense-legend"><div>🔵 Food & Groceries ₹43,200 (43.8%)</div><div>🟢 Staff Salary ₹20,000 (20.3%)</div><div>🟠 Maintenance ₹12,500 (12.7%)</div><div>🟣 Utilities ₹8,450 (8.6%)</div><div>🩷 Other Expenses ₹14,500 (14.6%)</div></div></div></div><div class="panel report-box"><h3>Occupancy Overview <select class="select" style="float:right;height:29px;min-width:90px"><option>This Month</option></select></h3><div class="simple-donut"><b>18<br>of 20 Rooms</b></div><div style="text-align:center;font-size:11px">🟢 Occupied 18 (90%) &nbsp; 🔴 Vacant 2 (10%)</div></div></div><div class="report-lower"><div class="panel"><h3>Pending Rent Overview <span style="float:right;color:#0757e8;font-size:11px">View All</span></h3><div class="compact-list"><div class="compact-line"><b>Resident</b><b>Room / Bed</b><b>Balance</b><b>Days Overdue</b></div>${[['Amit Verma','101 / Bed 1','₹8,000','15 days'],['Priya Singh','103 / Bed 1','₹8,000','12 days'],['Vikash Yadav','104 / Bed 3','₹8,000','10 days'],['Sourav Das','105 / Bed 2','₹6,000','7 days'],['Neha Patel','106 / Bed 1','₹7,000','5 days']].map(x=>`<div class="compact-line"><span>${x[0]}</span><span>${x[1]}</span><span>${x[2]}</span><span style="color:red">${x[3]}</span></div>`).join('')}<b style="float:right;color:red">₹45,000</b></div></div><div class="panel"><h3>Recent Complaints <span style="float:right;color:#0757e8;font-size:11px">View All</span></h3><div class="compact-list">${['Water Leakage in Bathroom','Light Not Working','Fan Making Noise','WiFi Connection Issue','Door Lock Problem'].map((x,i)=>`<div class="compact-line" style="grid-template-columns:1fr .6fr"><span>${x}</span><span class="status ${i===4?'active':'progress'}">${i===4?'Resolved':i%2?'In Progress':'Open'}</span></div>`).join('')}</div></div><div class="panel"><h3>Quick Summary <small>(This Month)</small></h3><div class="compact-list">${[['Total Collection','₹ 2,48,000'],['Total Expenses','₹ 98,650'],['Pending Rent','₹ 45,000'],['Net Income','₹ 1,49,350'],['Collection Rate','86.21%']].map(x=>`<div class="compact-line" style="grid-template-columns:1fr 1fr"><span>${x[0]}</span><b style="text-align:right">${x[1]}</b></div>`).join('')}</div></div></div><div class="notice">ⓘ Detailed analysis, comparisons and export options are available in each report.</div>`;
 }
 function placeholder(name,icon){setTitle(name);return `<div class="panel" style="padding:45px;text-align:center;margin-top:20px"><div class="icon blue" style="float:none;margin:0 auto 15px;width:55px;height:55px;border-radius:12px"><i class="fa-solid ${icon}" style="font-size:24px"></i></div><h2>${name}</h2><p style="color:#65718c">This section is ready for your PG management workflow.</p><button class="primary" style="margin:10px 0 0">＋ Add New</button></div>`}
 const pages={dashboard, residents:residentsPage, rooms:roomsPage, rent:rentPage, food:foodPage, complaints:complaintsPage, notifications:notificationsPage, reports:reportsPage,
-visitors:()=>placeholder('Visitor Management','fa-user-group'),finance:()=>placeholder('Finance','fa-chart-column'),inventory:()=>placeholder('Inventory','fa-box'),staff:()=>placeholder('Staff','fa-user'),documents:()=>placeholder('Documents','fa-file'),settings:()=>placeholder('Settings','fa-gear')};
+visitors:visitorsPage,settings:()=>placeholder('Settings','fa-gear')};
 function load(p){document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active',a.dataset.page===p));document.getElementById('content').innerHTML=pages[p]();if(innerWidth<800)document.getElementById('sidebar').classList.remove('open')}
 document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>load(a.dataset.page)));
 document.getElementById('hamb').addEventListener('click',()=>document.getElementById('sidebar').classList.toggle('open'));
